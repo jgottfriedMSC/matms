@@ -2,7 +2,7 @@ package matms.domain;
 
 import java.util.Objects;
 
-public final class Venue {
+public final class Adress {
 
 	// TODO: check for ISO-Standard to create a list of country codes
 	private final String country;
@@ -10,7 +10,7 @@ public final class Venue {
 	private final int postalCode;
 	private final int streetNumber;
 
-	public Venue(final String country, final String street, final int postalCode, final int streetNumber) {
+	public Adress(final String country, final String street, final int postalCode, final int streetNumber) {
 		this.country = country;
 		this.street = street;
 		this.postalCode = postalCode;
@@ -36,7 +36,7 @@ public final class Venue {
 	public boolean equals(Object o) {
 		if (o == null || getClass() != o.getClass())
 			return false;
-		Venue v = (Venue) o;
+		Adress v = (Adress) o;
 		if (Objects.equals(country, v.country) && Objects.equals(street, v.street)
 				&& Objects.equals(postalCode, v.postalCode) && Objects.equals(streetNumber, v.streetNumber)) {
 			return true;
