@@ -26,7 +26,7 @@ public final class Weight {
 	
 	@Override
 	public String toString() {
-		return weight + unit;
+		return weight + " " + unit;
 	}
 	
 	@Override
