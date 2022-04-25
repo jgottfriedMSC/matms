@@ -2,17 +2,23 @@ package matms.domain;
 
 import java.util.Objects;
 
+import matms.domain.exception.InvalidWeightException;
+
 public final class Weight {
 
+	//TODO: conversion methods ofKilogram, ofGram
 	private final double weight;
 	private final String unit;
 	
-	public Weight(final double weight, final String unit) {
+	public Weight(final double weight, final String unit) throws InvalidWeightException {
+		if (weight < 0.00) {
+			throw new InvalidWeightException("Weight should be >= 0.00");
+		}
 		this.weight = weight;
 		this.unit = unit;
 	}
 	
-	public Weight changeWeight(final double weight, final String unit) {
+	public Weight changeWeight(final double weight, final String unit) throws InvalidWeightException {
 		return new Weight(weight, unit);
 	}
 	

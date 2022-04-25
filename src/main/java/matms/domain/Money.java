@@ -2,17 +2,23 @@ package matms.domain;
 
 import java.util.Objects;
 
+import matms.domain.exception.InvalidAmountException;
+
 public final class Money {
 
+	//TODO: conversion ofEuro, ofPound, ofDollar, ...
 	private final double amount;
 	private final String currency;
 	
-	public Money(final double amount, final String currency) {
+	public Money(final double amount, final String currency) throws InvalidAmountException {
+		if (amount < 0.00) {
+			throw new InvalidAmountException("Amount should be >= 0.00");
+		}
 		this.amount = amount;
 		this.currency = currency;
 	}
 	
-	public Money changeValue(final double amount, final String currency) {
+	public Money changeValue(final double amount, final String currency) throws InvalidAmountException {
 		return new Money(amount, currency);
 	}
 	
