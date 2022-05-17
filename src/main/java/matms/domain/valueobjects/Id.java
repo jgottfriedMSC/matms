@@ -1,17 +1,16 @@
 package matms.domain.valueobjects;
 
 import java.util.Objects;
-import java.util.UUID;
 
 public final class Id {
 
-	private final UUID uuid;
+	private final String uuid;
 	
-	public Id(final UUID uuid) {
+	public Id(final String uuid) {
 		this.uuid = uuid;
 	}
 	
-	public UUID getId() {
+	public String getUuid() {
 		return this.uuid;
 	}
 	

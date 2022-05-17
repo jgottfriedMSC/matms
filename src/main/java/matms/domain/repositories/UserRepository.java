@@ -1,21 +1,26 @@
 package matms.domain.repositories;
 
 import java.util.List;
+import java.util.Optional;
 
 import matms.domain.Permission;
-import matms.domain.User;
+import matms.domain.entities.User;
+import matms.domain.valueobjects.Id;
 
 public interface UserRepository {
 
-	User getById(String id);
+	Optional<User> getById(String id);
 	
 	List<User> getByPermission(Permission permission);
 	
 	List<User> getAllUsers();
 	
-	void addUser(User user);
+	User addUser(User user);
 		
-	void removeUser(User user);
+	void deleteUser(User user);
 		
-	void updateUser(User user);
+	User updateUser(User user);
+	
+	Id nextId();
+	
 }

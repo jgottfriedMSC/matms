@@ -1,15 +1,18 @@
-package matms.domain;
+package matms.domain.entities;
+
+import matms.domain.Permission;
+import matms.domain.valueobjects.Id;
 
 public class User {
 	
-	private String id;
+	private Id id;
 	private String username;
 	private String password;
 	private String lastName;
 	private String firstName;
 	private Permission permission;
 	
-	private User(final String id, final String username, final String password, final String lastName, final String firstName, final Permission permission) {
+	private User(final Id id, final String username, final String password, final String lastName, final String firstName, final Permission permission) {
 		this.id = id;
 		this.username = username;
 		this.password = password;
@@ -23,7 +26,7 @@ public class User {
 	}
 	
 	public static class UserBuilder {
-		private String id;
+		private Id id;
 		private String username;
 		private String password;
 		private String lastName;
@@ -34,7 +37,7 @@ public class User {
 			
 		}
 		
-		public UserBuilder id(final String id) {
+		public UserBuilder id(final Id id) {
 			this.id = id;
 			return this;
 		}
@@ -69,7 +72,7 @@ public class User {
 		}
 	}
 	
-	public String getId() {
+	public Id getId() {
 		return id;
 	}
 	
@@ -96,7 +99,7 @@ public class User {
 	@Override
 	public String toString() {
 		return "User{" +
-				"id='" + id + "'" +
+				"id='" + id.getUuid().toString() + "'" +
 				", username='" + username + "'" +
 				", password='" + password + "'" +
 				", lastName='" + lastName + "'" +
