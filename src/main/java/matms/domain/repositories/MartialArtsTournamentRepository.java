@@ -1,16 +1,18 @@
 package matms.domain.repositories;
 
 import java.util.List;
+import java.util.Optional;
 
 import matms.domain.MartialArt;
-import matms.domain.MartialArtsTournament;
 import matms.domain.TournamentMode;
+import matms.domain.aggregates.MartialArtsTournament;
+import matms.domain.valueobjects.Id;
 
 public interface MartialArtsTournamentRepository {
 
-	MartialArtsTournament getById(String id);
+	Optional<MartialArtsTournament> getById(String id);
 	
-	MartialArtsTournament getByName(String name);
+	Optional<MartialArtsTournament> getByName(String name);
 	
 	List<MartialArtsTournament> getAllTournaments();
 	
@@ -24,5 +26,5 @@ public interface MartialArtsTournamentRepository {
 		
 	void updateTournament(MartialArtsTournament tournament);
 	
-	
+	Id nextId();
 }
