@@ -2,7 +2,7 @@ package matms.domain.valueobjects;
 
 import java.util.Objects;
 
-import matms.domain.exception.InvalidWeightException;
+import matms.domain.exceptions.InvalidWeightException;
 
 public final class Weight {
 

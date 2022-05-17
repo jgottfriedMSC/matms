@@ -2,7 +2,7 @@ package matms.domain.valueobjects;
 
 import java.util.Objects;
 
-import matms.domain.exception.InvalidAmountException;
+import matms.domain.exceptions.InvalidAmountException;
 
 public final class Money {
 

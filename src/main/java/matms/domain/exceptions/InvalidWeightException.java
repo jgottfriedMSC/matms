@@ -1,4 +1,4 @@
-package matms.domain.exception;
+package matms.domain.exceptions;
 
 public class InvalidWeightException extends Exception {
 
