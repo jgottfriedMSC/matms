@@ -1,4 +1,4 @@
-package matms.domain;
+package matms.domain.valueobjects;
 
 import java.util.Objects;
 
