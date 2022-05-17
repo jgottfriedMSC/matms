@@ -1,20 +1,24 @@
 package matms.domain.repositories;
 
 import java.util.List;
+import java.util.Optional;
 
 import matms.domain.MartialArt;
-import matms.domain.Participant;
+import matms.domain.entities.Participant;
+import matms.domain.valueobjects.Id;
 
 public interface ParticipantRepository {
 
-	Participant getById(String id);
+	Optional<Participant> getById(String id);
 	
 	List<Participant> getByMartialArt(MartialArt martialArt);
 	
-	void addParticipant(Participant participant);
+	Participant addParticipant(Participant participant);
 	
-	void removeParticipant(Participant participant);
+	void deleteParticipant(Participant participant);
 	
-	void updateParticipant(Participant participant);
+	Participant updateParticipant(Participant participant);
+	
+	Id nextId();
 	
 }
