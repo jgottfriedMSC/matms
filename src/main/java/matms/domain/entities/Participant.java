@@ -14,14 +14,18 @@ public class Participant {
 	private String firstName;
 	private Adress adress;
 	private Weight weight;
+	private boolean isLoser;
+	private boolean payedFee;
 	private List<MartialArt> martialArts;
 	
-	private Participant(final Id id, final String lastName, final String firstName, final Adress adress, final Weight weight, final List<MartialArt> martialArts) {
+	private Participant(final Id id, final String lastName, final String firstName, final Adress adress, final Weight weight, boolean isLoser, boolean payedFee, final List<MartialArt> martialArts) {
 		this.id = id;
 		this.lastName = lastName;
 		this.firstName = firstName;
 		this.adress = adress;
 		this.weight = weight;
+		this.isLoser = isLoser;
+		this.payedFee = payedFee;
 		this.martialArts = martialArts;
 	}
 	
@@ -36,6 +40,8 @@ public class Participant {
 		private String firstName;
 		private Adress adress;
 		private Weight weight;
+		private boolean isLoser;
+		private boolean payedFee;
 		private List<MartialArt> martialArts;
 		
 		ParticipantBuilder() {
@@ -67,13 +73,23 @@ public class Participant {
 			return this;
 		}
 		
+		public ParticipantBuilder isLoser(boolean isLoser) {
+			this.isLoser = isLoser;
+			return this;
+		}
+		
+		public ParticipantBuilder payedFee(boolean payedFee) {
+			this.payedFee = payedFee;
+			return this;
+		}
+		
 		public ParticipantBuilder martialArts(final List<MartialArt> martialArts) {
 			this.martialArts = martialArts;
 			return this;
 		}
 		
 		public Participant build() {
-			return new Participant(id, lastName, firstName, adress, weight, martialArts);
+			return new Participant(id, lastName, firstName, adress, weight, isLoser, payedFee, martialArts);
 		}
 	}
 	
@@ -95,6 +111,22 @@ public class Participant {
 	
 	public Weight getWeight() {
 		return weight;
+	}
+	
+	public boolean isLoser() {
+		return isLoser;
+	}
+	
+	public void lose() {
+		this.isLoser = true;
+	}
+	
+	public boolean payedFee() {
+		return payedFee;
+	}
+	
+	public void payFee() {
+		this.payedFee = true;
 	}
 	
 	public List<MartialArt> getMartialArts() {
