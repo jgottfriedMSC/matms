@@ -19,7 +19,7 @@ public final class Round {
 	}
 	
 	public Participant getOpponent() {
-		return participant;
+		return opponent;
 	}
 	
 	public boolean equals(Object o) {
@@ -39,4 +39,5 @@ public final class Round {
 	public int hashCode() {
 		return Objects.hash(participant, opponent);
 	}
+	
 }
