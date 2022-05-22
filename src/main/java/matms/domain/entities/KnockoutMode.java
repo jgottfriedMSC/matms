@@ -2,11 +2,11 @@ package matms.domain.entities;
 
 import matms.domain.aggregates.MartialArtsTournament;
 
-public class SingleKnockoutMode implements TournamentMode {
+public class KnockoutMode implements TournamentMode {
 
 	private MartialArtsTournament tournament;
 	
-	public SingleKnockoutMode(MartialArtsTournament tournament) {
+	public KnockoutMode(MartialArtsTournament tournament) {
 		this.tournament = tournament;
 	}
 	
@@ -15,4 +15,6 @@ public class SingleKnockoutMode implements TournamentMode {
 		return tournament.getParticipants().size() - 1; // n - 1
 	}
 
+	
+	
 }
