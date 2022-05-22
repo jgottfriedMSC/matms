@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import matms.domain.MartialArt;
-import matms.domain.TournamentMode;
 import matms.domain.aggregates.MartialArtsTournament;
 import matms.domain.valueobjects.Id;
 
@@ -16,7 +15,7 @@ public interface MartialArtsTournamentRepository {
 	
 	List<MartialArtsTournament> getAllTournaments();
 	
-	List<MartialArtsTournament> findAllByTournamentMode(TournamentMode mode);
+	//List<MartialArtsTournament> findAllByTournamentMode(TournamentMode mode);
 	
 	List<MartialArtsTournament> findAllByMartialArt(MartialArt martialArt);
 	

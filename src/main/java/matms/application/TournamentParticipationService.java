@@ -1,6 +1,5 @@
 package matms.application;
 
-import matms.abstraction.Utils;
 import matms.domain.MartialArt;
 import matms.domain.aggregates.MartialArtsTournament;
 import matms.domain.entities.Participant;
@@ -11,28 +10,6 @@ public final class TournamentParticipationService {
 	
 	public TournamentParticipationService(final MartialArtsTournament tournament) {
 		this.tournament = tournament;
-	}
-	
-	public int calculateNumberOfRounds() {
-		int numberOfRounds = 0;
-		
-		switch(tournament.getTournamentMode()) {
-		case SINGLE_KNOCKOUT:
-			numberOfRounds = tournament.getParticipants().size() - 1; // n - 1
-			break;
-		case DOUBLE_KNOCKOUT:
-			numberOfRounds = tournament.getParticipants().size() - 1; // n - 1
-			break;
-		case ROUND_ROBIN_TOURNAMENT:
-			numberOfRounds = (Utils.factCalculator(tournament.getParticipants().size())) / (Utils.factCalculator(2)) * Utils.factCalculator(tournament.getParticipants().size() - 2); // Binomialkoeffizient
-			break;
-		case SWISS_SYSTEM:
-			numberOfRounds = (int) ((tournament.getParticipants().size() / 2) * Utils.customLog(2, tournament.getParticipants().size())); // n/2 * log_2(n)
-			break;
-			
-		}
-		
-		return numberOfRounds;
 	}
 	
 	public void updateParticipantsAfterRound() {
@@ -50,10 +27,10 @@ public final class TournamentParticipationService {
 	}
 	
 	public void removeUnqualifiedParticipants() {
-		for (Participant participant : tournament.getParticipants()) {
-			for (MartialArt martialArt : participant.getMartialArts()) {
+		for (int i = 0; i < tournament.getParticipants().size(); i++) {
+			for (MartialArt martialArt : tournament.getParticipants().get(i).getMartialArts()) {
 				if (martialArt != tournament.getMartialArt()) {
-					tournament.getParticipants().remove(participant);
+					tournament.getParticipants().remove(tournament.getParticipants().get(i));
 				}
 			}
 		}

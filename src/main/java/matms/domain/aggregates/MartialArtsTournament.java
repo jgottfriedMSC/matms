@@ -3,12 +3,11 @@ package matms.domain.aggregates;
 import java.util.List;
 
 import matms.domain.MartialArt;
-import matms.domain.TournamentMode;
 import matms.domain.entities.Participant;
+import matms.domain.entities.TournamentMode;
 import matms.domain.valueobjects.Adress;
 import matms.domain.valueobjects.Id;
 import matms.domain.valueobjects.Money;
-import matms.domain.valueobjects.Round;
 
 public class MartialArtsTournament {
 
@@ -18,22 +17,16 @@ public class MartialArtsTournament {
 	private Money entryFee;
 	private Money ticketPrice;
 	private int numberOfTicketsSold;
-	private List<Round> rounds;
-	private int numberOfRounds;
-	private TournamentMode tournamentMode;
 	private List<Participant> participants;
 	private MartialArt martialArt;
 	
-	private MartialArtsTournament(final Id id, final String name, final Adress venue, final Money entryFee, final Money ticketPrice, final int numberOfTicketsSold, final List<Round> rounds, final int numberOfRounds, final TournamentMode tournamentMode, List<Participant> participants, final MartialArt martialArt) {
+	private MartialArtsTournament(final Id id, final String name, final Adress venue, final Money entryFee, final Money ticketPrice, final int numberOfTicketsSold, List<Participant> participants, final MartialArt martialArt) {
 		this.id = id;
 		this.name = name;
 		this.venue = venue;
 		this.entryFee = entryFee;
 		this.ticketPrice = ticketPrice;
 		this.numberOfTicketsSold = numberOfTicketsSold;
-		this.rounds = rounds;
-		this.numberOfRounds = numberOfRounds;
-		this.tournamentMode = tournamentMode;
 		this.participants = participants;
 		this.martialArt = martialArt;
 	}
@@ -50,9 +43,6 @@ public class MartialArtsTournament {
 		private Money entryFee;
 		private Money ticketPrice;
 		private int numberOfTicketsSold;
-		private List<Round> rounds;
-		private int numberOfRounds;
-		private TournamentMode tournamentMode;
 		private List<Participant> participants;
 		private MartialArt martialArt;
 		
@@ -90,21 +80,6 @@ public class MartialArtsTournament {
 			return this;
 		}
 		
-		public MartialArtsTournamentBuilder rounds(final List<Round> rounds) {
-			this.rounds = rounds;
-			return this;
-		}
-		
-		public MartialArtsTournamentBuilder numberOfRounds(final int numberOfRounds) {
-			this.numberOfRounds = numberOfRounds;
-			return this;
-		}
-		
-		public MartialArtsTournamentBuilder tournamentMode(final TournamentMode tournamentMode) {
-			this.tournamentMode = tournamentMode;
-			return this;
-		}
-		
 		public MartialArtsTournamentBuilder participants(List<Participant> participants) {
 			this.participants = participants;
 			return this;
@@ -116,7 +91,7 @@ public class MartialArtsTournament {
 		}
 		
 		public MartialArtsTournament build() {
-			return new MartialArtsTournament(id, name, venue, entryFee, ticketPrice, numberOfTicketsSold, rounds, numberOfRounds, tournamentMode, participants, martialArt);
+			return new MartialArtsTournament(id, name, venue, entryFee, ticketPrice, numberOfTicketsSold, participants, martialArt);
 		}
 		
 	}
@@ -143,18 +118,6 @@ public class MartialArtsTournament {
 	
 	public int getNumberOfTicketsSold() {
 		return numberOfTicketsSold;
-	}
-	
-	public List<Round> getRounds() {
-		return rounds;
-	}
-	
-	public int getNumberOfRounds() {
-		return numberOfRounds;
-	}
-	
-	public TournamentMode getTournamentMode() {
-		return tournamentMode;
 	}
 	
 	public List<Participant> getParticipants() {
