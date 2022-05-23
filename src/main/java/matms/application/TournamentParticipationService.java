@@ -1,5 +1,7 @@
 package matms.application;
 
+import java.util.Iterator;
+
 import matms.domain.MartialArt;
 import matms.domain.aggregates.MartialArtsTournament;
 import matms.domain.entities.Participant;
@@ -12,14 +14,6 @@ public final class TournamentParticipationService {
 		this.tournament = tournament;
 	}
 	
-	public void updateParticipantsAfterRound() {
-		for (Participant participant : tournament.getParticipants()) {
-			if (participant.isLoser()) {
-				tournament.getParticipants().remove(participant);
-			}
-		}
-	}
-	
 	// Last one in the list should be the winner in the end
 	// this method should be called after last round
 	public Participant getWinner() {
@@ -27,10 +21,12 @@ public final class TournamentParticipationService {
 	}
 	
 	public void removeUnqualifiedParticipants() {
-		for (int i = 0; i < tournament.getParticipants().size(); i++) {
-			for (MartialArt martialArt : tournament.getParticipants().get(i).getMartialArts()) {
-				if (martialArt != tournament.getMartialArt()) {
-					tournament.getParticipants().remove(tournament.getParticipants().get(i));
+		Iterator<Participant> iterator = tournament.getParticipants().values().iterator();
+		while (iterator.hasNext()) {
+			Participant p = iterator.next();
+			for (MartialArt martialArt : p.getMartialArts()) {
+				if (martialArt != tournament.getMartialArt() || p.payedFee() == false) {
+					iterator.remove();
 				}
 			}
 		}
