@@ -1,6 +1,6 @@
 package matms.abstraction;
 
-public class Utils {
+public class MathUtils {
 
 	public static int factCalculator(int n) {
 		int fact = 1;
