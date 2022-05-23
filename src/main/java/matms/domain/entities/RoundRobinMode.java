@@ -1,6 +1,6 @@
 package matms.domain.entities;
 
-import matms.abstraction.Utils;
+import matms.abstraction.MathUtils;
 import matms.domain.aggregates.MartialArtsTournament;
 
 public class RoundRobinMode implements TournamentMode {
@@ -13,7 +13,7 @@ public class RoundRobinMode implements TournamentMode {
 	
 	@Override
 	public int calculateNumberOfRounds() {
-		return (Utils.factCalculator(tournament.getParticipants().size())) / (Utils.factCalculator(2)) * Utils.factCalculator(tournament.getParticipants().size() - 2); // Binomialkoeffizient;
+		return (MathUtils.factCalculator(tournament.getParticipants().size())) / (MathUtils.factCalculator(2)) * MathUtils.factCalculator(tournament.getParticipants().size() - 2); // Binomialkoeffizient;
 	}
 
 }

@@ -1,6 +1,6 @@
 package matms.domain.entities;
 
-import matms.abstraction.Utils;
+import matms.abstraction.MathUtils;
 import matms.domain.aggregates.MartialArtsTournament;
 
 public class SwissSystemMode implements TournamentMode {
@@ -13,7 +13,7 @@ public class SwissSystemMode implements TournamentMode {
 
 	@Override
 	public int calculateNumberOfRounds() {
-		return (int) ((tournament.getParticipants().size() / 2) * Utils.customLog(2, tournament.getParticipants().size())); // n/2 * log_2(n);
+		return (int) ((tournament.getParticipants().size() / 2) * MathUtils.customLog(2, tournament.getParticipants().size())); // n/2 * log_2(n);
 	}
 	
 }

@@ -40,4 +40,8 @@ public final class Round {
 		return Objects.hash(participant, opponent);
 	}
 	
+	public void defineLoser(Participant loser) {
+		loser.lose();
+	}
+	
 }

@@ -1,10 +1,9 @@
 package matms.domain.aggregates;
 
-import java.util.List;
+import java.util.Map;
 
 import matms.domain.MartialArt;
 import matms.domain.entities.Participant;
-import matms.domain.entities.TournamentMode;
 import matms.domain.valueobjects.Adress;
 import matms.domain.valueobjects.Id;
 import matms.domain.valueobjects.Money;
@@ -17,10 +16,10 @@ public class MartialArtsTournament {
 	private Money entryFee;
 	private Money ticketPrice;
 	private int numberOfTicketsSold;
-	private List<Participant> participants;
+	private Map<String, Participant> participants;
 	private MartialArt martialArt;
 	
-	private MartialArtsTournament(final Id id, final String name, final Adress venue, final Money entryFee, final Money ticketPrice, final int numberOfTicketsSold, List<Participant> participants, final MartialArt martialArt) {
+	private MartialArtsTournament(final Id id, final String name, final Adress venue, final Money entryFee, final Money ticketPrice, final int numberOfTicketsSold, Map<String, Participant> participants, final MartialArt martialArt) {
 		this.id = id;
 		this.name = name;
 		this.venue = venue;
@@ -43,7 +42,7 @@ public class MartialArtsTournament {
 		private Money entryFee;
 		private Money ticketPrice;
 		private int numberOfTicketsSold;
-		private List<Participant> participants;
+		private Map<String, Participant> participants;
 		private MartialArt martialArt;
 		
 		MartialArtsTournamentBuilder() {
@@ -80,7 +79,7 @@ public class MartialArtsTournament {
 			return this;
 		}
 		
-		public MartialArtsTournamentBuilder participants(List<Participant> participants) {
+		public MartialArtsTournamentBuilder participants(Map<String, Participant> participants) {
 			this.participants = participants;
 			return this;
 		}
@@ -120,7 +119,7 @@ public class MartialArtsTournament {
 		return numberOfTicketsSold;
 	}
 	
-	public List<Participant> getParticipants() {
+	public Map<String, Participant> getParticipants() {
 		return participants;
 	}
 	
