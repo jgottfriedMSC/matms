@@ -2,7 +2,6 @@ package matms.application;
 
 import matms.domain.entities.Participant;
 import matms.domain.entities.Round;
-import matms.domain.entities.TournamentMode;
 import matms.domain.exceptions.NoWinnerException;
 
 public class RoundService {

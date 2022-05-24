@@ -1,5 +1,7 @@
-package matms.domain.entities;
+package matms.application;
 
+import matms.domain.entities.Participant;
+import matms.domain.entities.Round;
 import matms.domain.exceptions.NoWinnerException;
 
 public interface TournamentMode {

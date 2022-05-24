@@ -1,9 +1,11 @@
-package matms.domain.entities;
+package matms.application;
 
 import java.util.List;
 
 import matms.abstraction.MathUtils;
 import matms.domain.aggregates.MartialArtsTournament;
+import matms.domain.entities.Participant;
+import matms.domain.entities.Round;
 import matms.domain.exceptions.NoWinnerException;
 
 public class SwissSystemMode implements TournamentMode {

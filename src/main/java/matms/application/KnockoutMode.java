@@ -1,4 +1,4 @@
-package matms.domain.entities;
+package matms.application;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import matms.domain.aggregates.MartialArtsTournament;
+import matms.domain.entities.Participant;
+import matms.domain.entities.Round;
 import matms.domain.exceptions.NoWinnerException;
 import matms.domain.valueobjects.Match;
 
