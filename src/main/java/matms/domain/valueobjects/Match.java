@@ -4,12 +4,12 @@ import java.util.Objects;
 
 import matms.domain.entities.Participant;
 
-public final class Round {
+public final class Match {
 
 	private final Participant participant;
 	private final Participant opponent;
 	
-	public Round(final Participant participant, final Participant opponent) {
+	public Match(final Participant participant, final Participant opponent) {
 		this.participant = participant;
 		this.opponent = opponent;
 	}
@@ -27,13 +27,9 @@ public final class Round {
 			return false;
 		}
 		
-		Round round = (Round) o;
+		Match round = (Match) o;
 		
-		if (Objects.equals(participant, round.participant) && Objects.equals(opponent, round.opponent)) {
-			return true;
-		} else {
-			return false;
-		}
+		return (Objects.equals(participant, round.participant) && Objects.equals(opponent, round.opponent));
 	}
 	
 	public int hashCode() {
