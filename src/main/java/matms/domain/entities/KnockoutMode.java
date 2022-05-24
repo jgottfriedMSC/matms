@@ -54,7 +54,6 @@ public class KnockoutMode implements TournamentMode {
 		return this.currentRound;
 	}
 
-	// First method every Round
 	private Round initializeRound() {
 		Iterator<Map.Entry<String, Participant>> it = tournament.getParticipants().entrySet().iterator();
 		List<Match> matches = new ArrayList<>();
