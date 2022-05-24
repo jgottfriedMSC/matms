@@ -1,5 +1,6 @@
 package matms.domain.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import matms.domain.MartialArt;
@@ -17,6 +18,7 @@ public class Participant {
 	private boolean isLoser;
 	private boolean payedFee;
 	private List<MartialArt> martialArts;
+	private List<Participant> playedAgainst = new ArrayList<>();
 	
 	private Participant(final Id id, final String lastName, final String firstName, final Adress adress, final Weight weight, boolean isLoser, boolean payedFee, final List<MartialArt> martialArts) {
 		this.id = id;
@@ -111,6 +113,14 @@ public class Participant {
 	
 	public Weight getWeight() {
 		return weight;
+	}
+	
+	public void addToPlayedAgainst(Participant participant) {
+		playedAgainst.add(participant);
+	}
+	
+	public List<Participant> getPlayedAgainst() {
+		return playedAgainst;
 	}
 	
 	public boolean isLoser() {
