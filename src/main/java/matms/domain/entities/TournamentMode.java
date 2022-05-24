@@ -1,7 +1,5 @@
 package matms.domain.entities;
 
-import java.util.List;
-
 import matms.domain.exceptions.NoWinnerException;
 
 public interface TournamentMode {
