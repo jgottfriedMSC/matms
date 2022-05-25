@@ -38,6 +38,7 @@ public class RoundRobinMode implements TournamentMode {
 	@Override
 	public void playRound(Round round) {
 		for (Match match : round.getMatches()) {
+			//Loser hardcoded. normally User Input here.
 			match.defineLoser(match.getParticipant());
 			Integer newPoint = participantPoints.get(match.getOpponent()) + 1;
 			participantPoints.put(match.getOpponent(), newPoint);

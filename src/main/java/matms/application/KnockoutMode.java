@@ -29,6 +29,7 @@ public class KnockoutMode implements TournamentMode {
 	@Override
 	public void playRound(Round round) {
 		for (Match match : round.getMatches()) {
+			//Loser hardcoded. normally User Input here.
 			match.defineLoser(match.getParticipant());
 			tournament.getParticipants().remove(match.getParticipant().getId().getUuid());
 		}
