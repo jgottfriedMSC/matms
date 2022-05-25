@@ -17,6 +17,7 @@ public class Participant {
 	private Weight weight;
 	private boolean isLoser;
 	private boolean payedFee;
+	private boolean hasMatch;
 	private List<MartialArt> martialArts;
 	private List<Participant> playedAgainst = new ArrayList<>();
 	
@@ -125,6 +126,14 @@ public class Participant {
 	
 	public boolean isLoser() {
 		return isLoser;
+	}
+	
+	public void setMatch(boolean match) {
+		hasMatch = match;
+	}
+	
+	public boolean hasMatch() {
+		return hasMatch;
 	}
 	
 	public void lose() {

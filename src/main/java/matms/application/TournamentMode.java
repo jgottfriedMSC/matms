@@ -1,12 +1,14 @@
 package matms.application;
 
+import java.math.BigInteger;
+
 import matms.domain.entities.Participant;
 import matms.domain.entities.Round;
 import matms.domain.exceptions.NoWinnerException;
 
 public interface TournamentMode {
 
-	int calculateNumberOfMatches();
+	BigInteger calculateNumberOfMatches();
 	
 	void playRound(Round round);
 	

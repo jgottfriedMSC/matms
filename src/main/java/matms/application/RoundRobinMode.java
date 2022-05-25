@@ -1,5 +1,6 @@
 package matms.application;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -19,19 +20,19 @@ public class RoundRobinMode implements TournamentMode {
 
 	private MartialArtsTournament tournament;
 	private Round currentRound;
-	private int numberOfMatches;
+	private BigInteger numberOfMatches;
 	private int currentMatch = 0;
 	private Map<Participant, Integer> participantPoints = new HashMap<>();
 	
 	public RoundRobinMode(MartialArtsTournament tournament) {
 		this.tournament = tournament;
-		this.currentRound = initializeRound();
 		this.numberOfMatches = calculateNumberOfMatches();
+		initializePoints();
 	}
 	
 	@Override
-	public int calculateNumberOfMatches() {
-		return (MathUtils.factCalculator(tournament.getParticipants().size())) / ((MathUtils.factCalculator(2)) * MathUtils.factCalculator(tournament.getParticipants().size() - 2)); // Binomialkoeffizient;
+	public BigInteger calculateNumberOfMatches() {
+		return MathUtils.binomialCoefficient(BigInteger.valueOf(tournament.getParticipants().size()), BigInteger.valueOf(2)); // Binomialkoeffizient;
 	}
 
 	@Override
@@ -42,9 +43,17 @@ public class RoundRobinMode implements TournamentMode {
 			participantPoints.put(match.getOpponent(), newPoint);
 			match.getOpponent().addToPlayedAgainst(match.getParticipant());
 			match.getParticipant().addToPlayedAgainst(match.getOpponent());
+			match.getOpponent().setMatch(false);
+			match.getParticipant().setMatch(false);
 			currentMatch++;
 		}
 		
+	}
+	
+	private void initializePoints() {
+		for (Entry<String, Participant> entry : tournament.getParticipants().entrySet()) {
+			participantPoints.put(entry.getValue(), 0);
+		}
 	}
 
 	@Override
@@ -52,31 +61,19 @@ public class RoundRobinMode implements TournamentMode {
 		Iterator<Map.Entry<String, Participant>> it = tournament.getParticipants().entrySet().iterator();
 		List<Match> matches = new ArrayList<>();
 
-		if ((tournament.getParticipants().size() % 2) != 0) {
-			for (int i = 0; i < tournament.getParticipants().size() - 1; i += 2) {
-				Participant participant = it.next().getValue();
-				Participant opponent = it.next().getValue();
-				if (participant.getPlayedAgainst().contains(opponent)) {
-					if (it.hasNext()) {
-						opponent = it.next().getValue();
-						matches.add(new Match(participant, opponent));
-					}
+		while (it.hasNext()) {
+			// Immer nur einen Nehmen und die Liste durchgehen, schauen welcher noch nicht dran war
+			Participant participant = it.next().getValue();
+			for (Participant p : tournament.getParticipants().values()) {
+				if (!participant.getPlayedAgainst().contains(p) && !participant.equals(p) && !participant.hasMatch() && !p.hasMatch()) {
+					matches.add(new Match(participant, p));
+					participant.setMatch(true);
+					p.setMatch(true);
+					break;
 				}
 			}
-		} else {
-			while (it.hasNext()) {
-				// Immer nur einen Nehmen und die Liste durchgehen, schauen welcher noch nicht dran war
-				Participant participant = it.next().getValue();
-				for (Participant p : tournament.getParticipants().values()) {
-					if (!participant.getPlayedAgainst().contains(p) && !participant.equals(p)) {
-						matches.add(new Match(participant, p));
-						break;
-					}
-				}
-				// nimm immer die Participants aus der Liste sobald es ein Match gibt
-			}
-
 		}
+		
 		this.currentRound = new Round(matches);
 		return this.currentRound;
 	}
@@ -88,8 +85,6 @@ public class RoundRobinMode implements TournamentMode {
 		for (Entry<Participant, Integer> entry : participantPoints.entrySet()) {
 			if (max == entry.getValue()) {
 				return entry.getKey();
-			} else {
-				throw new NoWinnerException("There is no winner yet!");
 			}
 		}
 		
@@ -103,22 +98,7 @@ public class RoundRobinMode implements TournamentMode {
 
 	@Override
 	public boolean checkIfThereIsWinner() {
-		return currentMatch != numberOfMatches;
+		return currentMatch != numberOfMatches.intValue();
 	}
-	
-	private Round initializeRound() {
-		Iterator<Map.Entry<String, Participant>> it = tournament.getParticipants().entrySet().iterator();
-		List<Match> matches = new ArrayList<>();
-
-		while (it.hasNext()) {
-			Participant participant = it.next().getValue();
-			Participant opponent = it.next().getValue();
-			participantPoints.put(participant, 0);
-			participantPoints.put(opponent, 0);
-			matches.add(new Match(participant, opponent));
-		}
-		return new Round(matches);
-	}
-
 
 }

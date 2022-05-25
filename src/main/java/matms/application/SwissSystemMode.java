@@ -1,5 +1,6 @@
 package matms.application;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import matms.abstraction.MathUtils;
@@ -17,8 +18,8 @@ public class SwissSystemMode implements TournamentMode {
 	}
 
 	@Override
-	public int calculateNumberOfMatches() {
-		return (int) ((tournament.getParticipants().size() / 2) * MathUtils.customLog(2, tournament.getParticipants().size())); // n/2 * log_2(n);
+	public BigInteger calculateNumberOfMatches() {
+		return BigInteger.valueOf((long) ((tournament.getParticipants().size() / 2) * MathUtils.customLog(2, tournament.getParticipants().size()))); // n/2 * log_2(n);
 	}
 
 	@Override

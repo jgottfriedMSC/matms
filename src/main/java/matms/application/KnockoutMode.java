@@ -1,5 +1,6 @@
 package matms.application;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -18,12 +19,11 @@ public class KnockoutMode implements TournamentMode {
 
 	public KnockoutMode(MartialArtsTournament tournament) {
 		this.tournament = tournament;
-		this.currentRound = initializeRound();
 	}
 
 	@Override
-	public int calculateNumberOfMatches() {
-		return tournament.getParticipants().size() - 1; // n - 1
+	public BigInteger calculateNumberOfMatches() {
+		return BigInteger.valueOf(tournament.getParticipants().size() - 1); // n - 1
 	}
 
 	@Override
@@ -54,18 +54,6 @@ public class KnockoutMode implements TournamentMode {
 		}
 		this.currentRound = new Round(matches);
 		return this.currentRound;
-	}
-
-	private Round initializeRound() {
-		Iterator<Map.Entry<String, Participant>> it = tournament.getParticipants().entrySet().iterator();
-		List<Match> matches = new ArrayList<>();
-
-		while (it.hasNext()) {
-			Participant participant = it.next().getValue();
-			Participant opponent = it.next().getValue();
-			matches.add(new Match(participant, opponent));
-		}
-		return new Round(matches);
 	}
 
 	@Override

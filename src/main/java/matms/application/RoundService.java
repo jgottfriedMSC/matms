@@ -1,5 +1,7 @@
 package matms.application;
 
+import java.math.BigInteger;
+
 import matms.domain.entities.Participant;
 import matms.domain.entities.Round;
 import matms.domain.exceptions.NoWinnerException;
@@ -7,7 +9,7 @@ import matms.domain.exceptions.NoWinnerException;
 public class RoundService {
 
 	private TournamentMode tournamentMode;
-	private int numberOfRounds;
+	private BigInteger numberOfRounds;
 
 	public RoundService(TournamentMode tournamentMode) {
 		this.tournamentMode = tournamentMode;
@@ -27,7 +29,7 @@ public class RoundService {
 	}
 
 
-	public int getNumberOfRounds() {
+	public BigInteger getNumberOfRounds() {
 		return numberOfRounds;
 	}
 	
