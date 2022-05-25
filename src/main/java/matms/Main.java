@@ -9,6 +9,7 @@ import java.util.UUID;
 import matms.application.KnockoutMode;
 import matms.application.RoundRobinMode;
 import matms.application.RoundService;
+import matms.application.SwissSystemMode;
 import matms.application.TournamentMode;
 import matms.application.TournamentParticipationService;
 import matms.domain.MartialArt;
@@ -56,26 +57,15 @@ public class Main {
 		TournamentParticipationService participationService = new TournamentParticipationService(tournament);
 		participationService.removeUnqualifiedParticipants();
 
-		TournamentMode roundRobin = new RoundRobinMode(tournament);
+		TournamentMode swissMode = new SwissSystemMode(tournament);
 
-		// Berechne Runde
-		// Ergebnisse abfangen
-		// In einer while-Schleife mit Iterator durchgehen bis letzte Runde gespielt
-		RoundService roundService = new RoundService(roundRobin);
+		RoundService roundService = new RoundService(swissMode);
 		
 		while (roundService.checkIfThereIsWinner()) {
-			roundService.playRound(roundService.getCurrentRound());
 			roundService.playRound(roundService.nextRound());
 		}
-		
-		System.out.println("Tournament Winner: " + roundService.getTournamentWinner().getFirstName() + " " + roundService.getTournamentWinner().getLastName());
-		
-		// TournamentCreationService tournamentCreationService = new
-		// TournamentCreationService(newUser);
-		// MartialArtsTournament tournament =
-		// tournamentCreationService.createTournament();
-
-		// System.out.println(tournament.getMartialArt());
+		Participant winner = roundService.getTournamentWinner();
+		System.out.println("Tournament Winner: " + winner.getFirstName() + " " + winner.getLastName());
 	}
 
 }
