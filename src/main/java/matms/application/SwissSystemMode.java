@@ -92,7 +92,7 @@ public class SwissSystemMode implements TournamentMode {
 				winner.add(entry.getKey());
 			}
 		}
-		// little k.o.-system to determine winner
+		// little k.o.-system to determine winner if there is a draw
 		Iterator<Participant> it = winner.iterator();
 		List<Match> matches = new ArrayList<>();
 		
