@@ -10,6 +10,7 @@ import matms.application.KnockoutMode;
 import matms.application.RoundRobinMode;
 import matms.application.RoundService;
 import matms.application.SwissSystemMode;
+import matms.application.TournamentCreationService;
 import matms.application.TournamentMode;
 import matms.application.TournamentParticipationService;
 import matms.domain.MartialArt;
@@ -36,7 +37,7 @@ public class Main {
 		List<MartialArt> otherArts = new ArrayList<>();
 		arts.add(MartialArt.BOX);
 		otherArts.add(MartialArt.AIKIDO);
-		for (int i = 0; i < 4; i++) {
+		for (int i = 0; i < 8; i++) {
 			Participant p = Participant.builder().id(new Id(UUID.randomUUID().toString())).lastName("Wurst" + i)
 					.firstName("Hans" + i).adress(new Adress("Germany", "Wurststraße", 76187, i))
 					.weight(new Weight(80, "Kg")).payedFee(true).martialArts(arts).build();
@@ -50,9 +51,9 @@ public class Main {
 		var newUser = User.builder().id(new Id(UUID.randomUUID().toString())).username("Test").password("test1")
 				.lastName("Gott").firstName("Jotta").permission(Permission.TRAINER).build();
 
-		MartialArtsTournament tournament = MartialArtsTournament.builder().id(new Id(UUID.randomUUID().toString()))
-				.name("BoxTournament").venue(new Adress("Germany", "Benzstra�e", 76137, 50)).participants(partic)
-				.martialArt(MartialArt.BOX).build();
+		TournamentCreationService creationService = new TournamentCreationService(newUser);
+		
+		MartialArtsTournament tournament = creationService.createTournament(MartialArt.BOX, partic);
 
 		TournamentParticipationService participationService = new TournamentParticipationService(tournament);
 		participationService.removeUnqualifiedParticipants();
