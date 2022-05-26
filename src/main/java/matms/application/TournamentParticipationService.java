@@ -14,12 +14,6 @@ public final class TournamentParticipationService {
 		this.tournament = tournament;
 	}
 	
-	// Last one in the list should be the winner in the end
-	// this method should be called after last round
-	public Participant getWinner() {
-		return tournament.getParticipants().get(0);
-	}
-	
 	public void removeUnqualifiedParticipants() {
 		Iterator<Participant> iterator = tournament.getParticipants().values().iterator();
 		while (iterator.hasNext()) {
