@@ -25,7 +25,7 @@ public final class ParticipantService {
 		return participantRepo.getByMartialArt(martialArt);
 	}
 	
-	public Participant createParticipant(final Participant participant) throws ParticipantAlreadyExistsException {
+	public void createParticipant(final Participant participant) throws ParticipantAlreadyExistsException {
 		if (participantRepo.getById(participant.getId().getUuid()).isPresent()) {
 			throw new ParticipantAlreadyExistsException("Participant with id " + participant.getId().getUuid() + " already exists!");
 		} else {
@@ -37,13 +37,13 @@ public final class ParticipantService {
 					.weight(participant.getWeight())
 					.martialArts(participant.getMartialArts())
 					.build();
-			return participantRepo.addParticipant(participantToSave);
+			participantRepo.addParticipant(participantToSave);
 		}
 	}
 	
-	public Participant updateParticipant(final Participant participant) throws ParticipantNotFoundException {
+	public void updateParticipant(final Participant participant) throws ParticipantNotFoundException {
 		if (participantRepo.getById(participant.getId().getUuid()).isPresent()) {
-			return participantRepo.updateParticipant(participant);
+			participantRepo.updateParticipant(participant);
 		} else {
 			throw new ParticipantNotFoundException("Participant " + participant.getFirstName() + " " + participant.getLastName() + " does not exist!");
 		}

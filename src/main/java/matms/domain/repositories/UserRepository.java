@@ -15,11 +15,11 @@ public interface UserRepository {
 	
 	List<User> getAllUsers();
 	
-	User addUser(User user);
+	void addUser(User user);
 		
 	void deleteUser(User user);
 		
-	User updateUser(User user);
+	void updateUser(User user);
 	
 	Id nextId();
 	

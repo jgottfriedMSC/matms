@@ -12,9 +12,9 @@ public final class UpdateUser {
 		this.userRepo = userRepo;
 	}
 	
-	public User updateUser(final User user) throws UserNotFoundException {
+	public void updateUser(final User user) throws UserNotFoundException {
 		if (userRepo.getById(user.getId().getUuid()).isPresent()) {
-			return userRepo.updateUser(user);
+			userRepo.updateUser(user);
 		} else {
 			throw new UserNotFoundException("User " + user.getUsername() + " not found");
 		}

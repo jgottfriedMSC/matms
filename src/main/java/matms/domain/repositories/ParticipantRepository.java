@@ -13,11 +13,13 @@ public interface ParticipantRepository {
 	
 	List<Participant> getByMartialArt(MartialArt martialArt);
 	
-	Participant addParticipant(Participant participant);
+	List<Participant> getAllParticipants();
+	
+	void addParticipant(Participant participant);
 	
 	void deleteParticipant(Participant participant);
 	
-	Participant updateParticipant(Participant participant);
+	void updateParticipant(Participant participant);
 	
 	Id nextId();
 	

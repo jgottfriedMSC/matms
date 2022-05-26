@@ -16,7 +16,7 @@ public final class CreateUser {
 		this.userRepo = userRepo;
 	}
 	
-	public User create(final User user) throws UserAlreadyExistsException {
+	public void create(final User user) throws UserAlreadyExistsException {
 		if (userRepo.getById(user.getId().getUuid()).isPresent()) {
 			throw new UserAlreadyExistsException("User with id " + user.getId().getUuid() + " already exists!");
 		}
@@ -28,7 +28,7 @@ public final class CreateUser {
 				.firstName(user.getFirstName())
 				.permission(user.getPermission())
 				.build();
-		return userRepo.addUser(userToSave);
+		userRepo.addUser(userToSave);
 	}
 	
 }
