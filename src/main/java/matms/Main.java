@@ -71,10 +71,10 @@ public class Main {
 		otherArts.add(MartialArt.AIKIDO);
 		for (int i = 0; i < 8; i++) {
 			Participant p = Participant.builder().id(new Id(UUID.randomUUID().toString())).lastName("Wurst" + i)
-					.firstName("Hans" + i).adress(new Adress("Germany", "WurststraÃŸe", 76187, i))
+					.firstName("Hans" + i).adress(new Adress("Germany", "Wurststraße", 76187, i))
 					.weight(new Weight(80, "Kg")).payedFee(true).martialArts(arts).build();
 			Participant p_not = Participant.builder().id(new Id(UUID.randomUUID().toString())).lastName("Wurst" + i)
-					.firstName("Hans" + i).adress(new Adress("Germany", "WurststraÃŸe", 76187, i))
+					.firstName("Hans" + i).adress(new Adress("Germany", "Wurststraße", 76187, i))
 					.weight(new Weight(80, "Kg")).martialArts(otherArts).build();
 			partic.put(p.getId().getUuid(), p);
 			partic.put(p_not.getId().getUuid(), p_not);

@@ -77,6 +77,7 @@ public class TextStatistics {
 			pw.print("\n");
 			pw.print(getWinner());
 		}
+		System.out.println("Created TournamentData.txt with information about tournaments");
 	}
 	
 	
