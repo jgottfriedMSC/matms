@@ -28,10 +28,19 @@ public class AdressSpec {
 	}
 	
 	@Test
-	public void getCountryTest() {
-		Adress adress = new Adress("a", "d", 1, 1);
-		String country = "a";
-		assertTrue(adress.getCountry().equals(country));
+	public void hashCodeTest() {
+		Adress adress1 = new Adress("a", "b", 1, 1);
+		Adress adress2 = new Adress("b", "a", 2, 2);
+		Adress adress3 = new Adress("b", "a", 2, 2);
+		assertFalse(adress1.hashCode() == adress2.hashCode());
+		assertTrue(adress2.hashCode() == adress3.hashCode());
+	}
+	
+	@Test
+	public void toStringTest() {
+		String adressString = "{country='a', street='b', streetNumber='1', postalCode='1'}";
+		Adress adress = new Adress("a", "b", 1, 1);
+		assertTrue(adress.toString().equals(adressString));
 	}
 	
 }
