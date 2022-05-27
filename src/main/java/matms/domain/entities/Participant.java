@@ -156,7 +156,12 @@ public class Participant {
 	public String toString() {
 		String arts = "";
 		for (MartialArt art : martialArts) {
-			arts += art.toString() + ", ";
+			if (martialArts.size() == 1) {
+				arts += art.toString();
+			} else {
+				arts += art.toString() + ",";
+			}
+			
 		}
 		
 		return "Participant{" +
