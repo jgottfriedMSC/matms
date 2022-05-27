@@ -6,7 +6,6 @@ import matms.domain.exceptions.InvalidAmountException;
 
 public final class Money {
 
-	//TODO: conversion ofEuro, ofPound, ofDollar, ...
 	private final double amount;
 	private final String currency;
 	
@@ -44,6 +43,11 @@ public final class Money {
 		} else {
 			return false;
 		}
+	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(amount, currency);
 	}
 	
 }
