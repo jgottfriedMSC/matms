@@ -1,4 +1,4 @@
-package matms.domain.entities;
+package matms.domain;
 
 import java.util.List;
 

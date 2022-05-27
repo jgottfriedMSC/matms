@@ -43,7 +43,15 @@ public final class ParticipantService {
 	
 	public void updateParticipant(final Participant participant) throws ParticipantNotFoundException {
 		if (participantRepo.getById(participant.getId().getUuid()).isPresent()) {
-			participantRepo.updateParticipant(participant);
+			Participant participantToSave = Participant.builder()
+					.id(participant.getId())
+					.lastName(participant.getLastName())
+					.firstName(participant.getFirstName())
+					.adress(participant.getAdress())
+					.weight(participant.getWeight())
+					.martialArts(participant.getMartialArts())
+					.build();
+			participantRepo.updateParticipant(participantToSave);
 		} else {
 			throw new ParticipantNotFoundException("Participant " + participant.getFirstName() + " " + participant.getLastName() + " does not exist!");
 		}

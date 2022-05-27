@@ -8,31 +8,38 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Optional;
 
 import matms.abstraction.MathUtils;
+import matms.domain.Round;
+import matms.domain.TournamentMode;
 import matms.domain.aggregates.MartialArtsTournament;
 import matms.domain.entities.Participant;
-import matms.domain.entities.Round;
 import matms.domain.exceptions.NoWinnerException;
+import matms.domain.exceptions.TournamentNotFoundException;
 import matms.domain.valueobjects.Match;
 
 public class RoundRobinMode implements TournamentMode {
 
-	private MartialArtsTournament tournament;
+	private Optional<MartialArtsTournament> tournament;
 	private Round currentRound;
 	private BigInteger numberOfMatches;
 	private int currentMatch = 0;
 	private Map<Participant, Integer> participantPoints = new HashMap<>();
 	
-	public RoundRobinMode(MartialArtsTournament tournament) {
+	public RoundRobinMode(Optional<MartialArtsTournament> tournament) throws TournamentNotFoundException {
 		this.tournament = tournament;
 		this.numberOfMatches = calculateNumberOfMatches();
 		initializePoints();
 	}
 	
 	@Override
-	public BigInteger calculateNumberOfMatches() {
-		return MathUtils.binomialCoefficient(BigInteger.valueOf(tournament.getParticipants().size()), BigInteger.valueOf(2)); // Binomialkoeffizient;
+	public BigInteger calculateNumberOfMatches() throws TournamentNotFoundException {
+		if (tournament.isPresent()) {
+			return MathUtils.binomialCoefficient(BigInteger.valueOf(tournament.get().getParticipants().size()), BigInteger.valueOf(2)); // Binomialkoeffizient;
+		} else {
+			throw new TournamentNotFoundException("Tournament not found!");
+		}
 	}
 
 	@Override
@@ -51,32 +58,42 @@ public class RoundRobinMode implements TournamentMode {
 		
 	}
 	
-	private void initializePoints() {
-		for (Entry<String, Participant> entry : tournament.getParticipants().entrySet()) {
-			participantPoints.put(entry.getValue(), 0);
+	private void initializePoints() throws TournamentNotFoundException {
+		if (tournament.isPresent()) {
+			for (Entry<String, Participant> entry : tournament.get().getParticipants().entrySet()) {
+				participantPoints.put(entry.getValue(), 0);
+			}
+		} else {
+			throw new TournamentNotFoundException("Tournament not found!");
 		}
+
 	}
 
 	@Override
-	public Round nextRound() {
-		Iterator<Map.Entry<String, Participant>> it = tournament.getParticipants().entrySet().iterator();
-		List<Match> matches = new ArrayList<>();
+	public Round nextRound() throws TournamentNotFoundException {
+		if (tournament.isPresent()) {
+			Iterator<Map.Entry<String, Participant>> it = tournament.get().getParticipants().entrySet().iterator();
+			List<Match> matches = new ArrayList<>();
 
-		while (it.hasNext()) {
-			// Immer nur einen Nehmen und die Liste durchgehen, schauen welcher noch nicht dran war
-			Participant participant = it.next().getValue();
-			for (Participant p : tournament.getParticipants().values()) {
-				if (!participant.getPlayedAgainst().contains(p) && !participant.equals(p) && !participant.hasMatch() && !p.hasMatch()) {
-					matches.add(new Match(participant, p));
-					participant.setMatch(true);
-					p.setMatch(true);
-					break;
+			while (it.hasNext()) {
+				// Immer nur einen Nehmen und die Liste durchgehen, schauen welcher noch nicht dran war
+				Participant participant = it.next().getValue();
+				for (Participant p : tournament.get().getParticipants().values()) {
+					if (!participant.getPlayedAgainst().contains(p) && !participant.equals(p) && !participant.hasMatch() && !p.hasMatch()) {
+						matches.add(new Match(participant, p));
+						participant.setMatch(true);
+						p.setMatch(true);
+						break;
+					}
 				}
 			}
+			
+			this.currentRound = new Round(matches);
+			return this.currentRound;
+		} else {
+			throw new TournamentNotFoundException("Tournament not found!");
 		}
-		
-		this.currentRound = new Round(matches);
-		return this.currentRound;
+
 	}
 
 	@Override
@@ -100,6 +117,11 @@ public class RoundRobinMode implements TournamentMode {
 	@Override
 	public boolean checkIfThereIsWinner() {
 		return currentMatch != numberOfMatches.intValue();
+	}
+
+	@Override
+	public Map<Participant, Integer> getParticipantPoints() {
+		return participantPoints;
 	}
 
 }

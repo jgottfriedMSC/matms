@@ -9,30 +9,37 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Optional;
 
 import matms.abstraction.MathUtils;
+import matms.domain.Round;
+import matms.domain.TournamentMode;
 import matms.domain.aggregates.MartialArtsTournament;
 import matms.domain.entities.Participant;
-import matms.domain.entities.Round;
+import matms.domain.exceptions.TournamentNotFoundException;
 import matms.domain.valueobjects.Match;
 
 public class SwissSystemMode implements TournamentMode {
 
-	private MartialArtsTournament tournament;
+	private Optional<MartialArtsTournament> tournament;
 	private Round currentRound;
 	private BigInteger numberOfMatches;
 	private int currentMatch = 0;
 	private Map<Participant, Integer> participantPoints = new HashMap<>();
 	
-	public SwissSystemMode(MartialArtsTournament tournament) {
+	public SwissSystemMode(Optional<MartialArtsTournament> tournament) throws TournamentNotFoundException {
 		this.tournament = tournament;
 		this.numberOfMatches = calculateNumberOfMatches();
 		initializePoints();
 	}
 
 	@Override
-	public BigInteger calculateNumberOfMatches() {
-		return BigInteger.valueOf((long) ((tournament.getParticipants().size() / 2) * MathUtils.customLog(2, tournament.getParticipants().size()))); // n/2 * log_2(n);
+	public BigInteger calculateNumberOfMatches() throws TournamentNotFoundException {
+		if (tournament.isPresent()) {
+			return BigInteger.valueOf((long) ((tournament.get().getParticipants().size() / 2) * MathUtils.customLog(2, tournament.get().getParticipants().size()))); // n/2 * log_2(n);
+		} else {
+			throw new TournamentNotFoundException("Tournament not found!");
+		}
 	}
 
 	@Override
@@ -53,10 +60,15 @@ public class SwissSystemMode implements TournamentMode {
 		}
 	}
 	
-	private void initializePoints() {
-		for (Entry<String, Participant> entry : tournament.getParticipants().entrySet()) {
-			participantPoints.put(entry.getValue(), 0);
+	private void initializePoints() throws TournamentNotFoundException {
+		if (tournament.isPresent()) {
+			for (Entry<String, Participant> entry : tournament.get().getParticipants().entrySet()) {
+				participantPoints.put(entry.getValue(), 0);
+			}
+		} else {
+			throw new TournamentNotFoundException("Tournament not found!");
 		}
+
 	}
 
 	@Override
@@ -139,6 +151,11 @@ public class SwissSystemMode implements TournamentMode {
 		}
 		
 		return result;
+	}
+
+	@Override
+	public Map<Participant, Integer> getParticipantPoints() {
+		return participantPoints;
 	}
 	
 }

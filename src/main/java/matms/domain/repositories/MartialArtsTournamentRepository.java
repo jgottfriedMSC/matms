@@ -15,8 +15,6 @@ public interface MartialArtsTournamentRepository {
 	
 	List<MartialArtsTournament> getAllTournaments();
 	
-	//List<MartialArtsTournament> findAllByTournamentMode(TournamentMode mode);
-	
 	List<MartialArtsTournament> findAllByMartialArt(MartialArt martialArt);
 	
 	void addTournament(MartialArtsTournament tournament);
