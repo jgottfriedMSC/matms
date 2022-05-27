@@ -101,7 +101,6 @@ public class Main {
 		while (roundService.checkIfThereIsWinner()) {
 			roundService.playRound(roundService.nextRound());
 		}
-		Participant winner = roundService.getTournamentWinner();
 		
 		TextStatistics textStats = new TextStatistics(roundService, userRepo, martialArtsTournamentrepo);
 		textStats.createDataOutputFile();
