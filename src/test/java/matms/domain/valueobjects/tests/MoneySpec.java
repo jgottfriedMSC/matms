@@ -1,4 +1,4 @@
-package matms.domain.tests;
+package matms.domain.valueobjects.tests;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
