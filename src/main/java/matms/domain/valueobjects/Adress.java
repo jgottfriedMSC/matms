@@ -4,7 +4,6 @@ import java.util.Objects;
 
 public final class Adress {
 
-	// TODO: check for ISO-Standard to create a list of country codes
 	private final String country;
 	private final String street;
 	private final int postalCode;
