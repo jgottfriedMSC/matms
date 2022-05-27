@@ -132,7 +132,7 @@ public class MartialArtsTournament {
 	public String toString() {
 		String participantString = "";
 		for (Entry<String, Participant> p : participants.entrySet()) {
-			participantString += p.getValue().toString() + ", ";
+			participantString += p.getValue().getId().getUuid() + ", ";
 		}
 		
 		return "MartialArtsTournament{" +
