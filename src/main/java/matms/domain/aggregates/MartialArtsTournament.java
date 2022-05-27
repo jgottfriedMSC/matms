@@ -132,7 +132,12 @@ public class MartialArtsTournament {
 	public String toString() {
 		String participantString = "";
 		for (Entry<String, Participant> p : participants.entrySet()) {
-			participantString += p.getValue().getId().getUuid() + ", ";
+			if (participants.entrySet().size() == 1) {
+				participantString += p.getValue().getId().getUuid();
+			} else {
+				participantString += p.getValue().getId().getUuid() + ",";
+			}
+			
 		}
 		
 		return "MartialArtsTournament{" +
@@ -141,7 +146,7 @@ public class MartialArtsTournament {
 				", venue='" + venue.toString() + "'" +
 				", entryFee='" + entryFee + "'" +
 				", ticketPrice='" + ticketPrice + "'" +
-				", participants='" + participantString + 
+				", participants='" + participantString + "'" +
 				", martialArt='" + martialArt + "'}";
 				
 	}

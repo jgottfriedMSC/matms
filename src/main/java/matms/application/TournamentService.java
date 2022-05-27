@@ -61,10 +61,10 @@ public class TournamentService {
 		}
 	}
 	
-	public void removeTournament(MartialArtsTournament tournament) throws AuthenticationException, TournamentAlreadyExistsException {
+	public void removeTournament(MartialArtsTournament tournament) throws AuthenticationException, TournamentNotFoundException {
 		if (user.getPermission() == Permission.TRAINER || user.getPermission() == Permission.ORGANIZER) {
-			if (martialArtsTournamentRepo.getById(tournament.getId().getUuid()).isPresent()) {
-				throw new TournamentAlreadyExistsException("Tournament already exists!");
+			if (martialArtsTournamentRepo.getById(tournament.getId().getUuid()).isEmpty()) {
+				throw new TournamentNotFoundException("Tournament already exists!");
 			} else {
 				martialArtsTournamentRepo.removeTournament(tournament);
 			}

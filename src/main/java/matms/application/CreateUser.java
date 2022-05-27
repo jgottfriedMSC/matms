@@ -1,11 +1,8 @@
 package matms.application;
 
-import java.util.UUID;
-
 import matms.domain.entities.User;
 import matms.domain.exceptions.UserAlreadyExistsException;
 import matms.domain.repositories.UserRepository;
-import matms.domain.valueobjects.Id;
 
 // Single-Responsibility-Principle: yes
 public final class CreateUser {
@@ -21,7 +18,7 @@ public final class CreateUser {
 			throw new UserAlreadyExistsException("User with id " + user.getId().getUuid() + " already exists!");
 		}
 		User userToSave = User.builder()
-				.id(new Id(UUID.randomUUID().toString()))
+				.id(user.getId())
 				.username(user.getUsername())
 				.password(user.getPassword())
 				.lastName(user.getLastName())
