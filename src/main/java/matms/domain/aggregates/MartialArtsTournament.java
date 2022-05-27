@@ -1,6 +1,7 @@
 package matms.domain.aggregates;
 
 import java.util.Map;
+import java.util.Map.Entry;
 
 import matms.domain.MartialArt;
 import matms.domain.entities.Participant;
@@ -125,5 +126,23 @@ public class MartialArtsTournament {
 	
 	public MartialArt getMartialArt() {
 		return martialArt;
+	}
+	
+	@Override
+	public String toString() {
+		String participantString = "";
+		for (Entry<String, Participant> p : participants.entrySet()) {
+			participantString += p.getValue().toString() + ", ";
+		}
+		
+		return "MartialArtsTournament{" +
+				"id='" + id.getUuid().toString() + "'" +
+				", name='" + name + "'" +
+				", venue='" + venue.toString() + "'" +
+				", entryFee='" + entryFee + "'" +
+				", ticketPrice='" + ticketPrice + "'" +
+				", participants='" + participantString + 
+				", martialArt='" + martialArt + "'}";
+				
 	}
 }

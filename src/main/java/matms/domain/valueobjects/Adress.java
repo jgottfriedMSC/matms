@@ -48,5 +48,15 @@ public final class Adress {
 	public int hashCode() {
 		return Objects.hash(country, street, postalCode, streetNumber);
 	}
+	
+	@Override
+	public String toString() {
+		return "{" +
+				"country='" + country + "'" +
+				", street='" + street + "'" +
+				", streetNumber='" + streetNumber + "'" +
+				", postalCode='" + postalCode + "'}";
+				
+	}
 
 }

@@ -152,4 +152,21 @@ public class Participant {
 		return martialArts;
 	}
 	
+	@Override
+	public String toString() {
+		String arts = "";
+		for (MartialArt art : martialArts) {
+			arts += art.toString() + ", ";
+		}
+		
+		return "Participant{" +
+				"id='" + id.getUuid().toString() + "'" +
+				", firstName='" + firstName + "'" +
+				", lastName='" + lastName + "'" +
+				", adress='" + adress.toString() + "'" +
+				", weight='" + weight.toString() + "'" +
+				", martialArts='" + arts + "'}";
+				
+	}
+	
 }
