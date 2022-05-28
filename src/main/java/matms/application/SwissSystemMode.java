@@ -13,12 +13,13 @@ import java.util.Optional;
 
 import matms.abstraction.MathUtils;
 import matms.domain.Round;
+import matms.domain.TournamentMode;
 import matms.domain.aggregates.MartialArtsTournament;
 import matms.domain.entities.Participant;
 import matms.domain.exceptions.TournamentNotFoundException;
 import matms.domain.valueobjects.Match;
 
-public class SwissSystemMode{
+public class SwissSystemMode implements TournamentMode {
 
 	private Optional<MartialArtsTournament> tournament;
 	private Round currentRound;
@@ -32,6 +33,7 @@ public class SwissSystemMode{
 		initializePoints();
 	}
 
+	@Override
 	public BigInteger calculateNumberOfMatches() throws TournamentNotFoundException {
 		if (tournament.isPresent()) {
 			return BigInteger.valueOf((long) ((tournament.get().getParticipants().size() / 2) * MathUtils.customLog(2, tournament.get().getParticipants().size()))); // n/2 * log_2(n);
@@ -40,6 +42,7 @@ public class SwissSystemMode{
 		}
 	}
 
+	@Override
 	public void playRound(Round round) {
 		for (Match match : round.getMatches()) {
 			//Loser hardcoded. normally User Input here.
@@ -68,6 +71,7 @@ public class SwissSystemMode{
 
 	}
 
+	@Override
 	public Round nextRound() {
 		participantPoints = sortByValue(participantPoints);
 		
@@ -90,6 +94,7 @@ public class SwissSystemMode{
 		return this.currentRound;
 	}
 
+	@Override
 	public Participant getWinner() {
 		ArrayList<Participant> winner = new ArrayList<>();
 		int max = Collections.max(participantPoints.values());
@@ -126,10 +131,12 @@ public class SwissSystemMode{
 		
 	}
 
+	@Override
 	public Round getCurrentRound() {
 		return currentRound;
 	}
 
+	@Override
 	public boolean checkIfThereIsWinner() {
 		return currentMatch != numberOfMatches.intValue();
 	}
@@ -146,6 +153,7 @@ public class SwissSystemMode{
 		return result;
 	}
 
+	@Override
 	public Map<Participant, Integer> getParticipantPoints() {
 		return participantPoints;
 	}
