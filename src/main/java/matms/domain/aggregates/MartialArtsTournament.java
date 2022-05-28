@@ -3,6 +3,9 @@ package matms.domain.aggregates;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import matms.application.KnockoutMode;
+import matms.application.RoundRobinMode;
+import matms.application.SwissSystemMode;
 import matms.domain.MartialArt;
 import matms.domain.entities.Participant;
 import matms.domain.valueobjects.Adress;
@@ -18,7 +21,11 @@ public class MartialArtsTournament {
 	private Money ticketPrice;
 	private int numberOfTicketsSold;
 	private Map<String, Participant> participants;
-	private MartialArt martialArt;
+	private MartialArt martialArt; 
+	
+	private KnockoutMode knockout;
+	private RoundRobinMode roundRobin;
+	private SwissSystemMode swissSystem;
 	
 	private MartialArtsTournament(final Id id, final String name, final Adress venue, final Money entryFee, final Money ticketPrice, final int numberOfTicketsSold, Map<String, Participant> participants, final MartialArt martialArt) {
 		this.id = id;
@@ -126,6 +133,18 @@ public class MartialArtsTournament {
 	
 	public MartialArt getMartialArt() {
 		return martialArt;
+	}
+	
+	public void setTournamentMode(KnockoutMode knockout) {
+		this.knockout = knockout;
+	}
+	
+	public void setTournamentMode(RoundRobinMode roundRobin) {
+		this.roundRobin = roundRobin;
+	}
+	
+	public void setTournamentMode(SwissSystemMode swiss) {
+		this.swissSystem = swiss;
 	}
 	
 	@Override

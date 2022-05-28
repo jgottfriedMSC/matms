@@ -9,14 +9,13 @@ import java.util.Map;
 import java.util.Optional;
 
 import matms.domain.Round;
-import matms.domain.TournamentMode;
 import matms.domain.aggregates.MartialArtsTournament;
 import matms.domain.entities.Participant;
 import matms.domain.exceptions.NoWinnerException;
 import matms.domain.exceptions.TournamentNotFoundException;
 import matms.domain.valueobjects.Match;
 
-public class KnockoutMode implements TournamentMode {
+public class KnockoutMode {
 
 	private Optional<MartialArtsTournament> tournament;
 	private Round currentRound;
@@ -25,7 +24,6 @@ public class KnockoutMode implements TournamentMode {
 		this.tournament = tournament;
 	}
 
-	@Override
 	public BigInteger calculateNumberOfMatches() throws TournamentNotFoundException {
 		if (tournament.isPresent()) {
 			return BigInteger.valueOf(tournament.get().getParticipants().size() - 1); // n - 1
@@ -34,7 +32,6 @@ public class KnockoutMode implements TournamentMode {
 		}
 	}
 
-	@Override
 	public void playRound(Round round) throws TournamentNotFoundException {
 		if (tournament.isPresent()) {
 			for (Match match : round.getMatches()) {
@@ -75,7 +72,6 @@ public class KnockoutMode implements TournamentMode {
 
 	}
 
-	@Override
 	public Participant getWinner() throws NoWinnerException, TournamentNotFoundException {
 		if (tournament.isPresent()) {
 			if (tournament.get().getParticipants().size() == 1) {
@@ -103,12 +99,10 @@ public class KnockoutMode implements TournamentMode {
 		
 	}
 
-	@Override
 	public Round getCurrentRound() {
 		return currentRound;
 	}
 
-	@Override
 	public Map<Participant, Integer> getParticipantPoints() {
 		// return empty Hashmap because in KnockoutMode there are no points
 		return new HashMap<Participant, Integer>();

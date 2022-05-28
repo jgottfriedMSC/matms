@@ -12,14 +12,13 @@ import java.util.Optional;
 
 import matms.abstraction.MathUtils;
 import matms.domain.Round;
-import matms.domain.TournamentMode;
 import matms.domain.aggregates.MartialArtsTournament;
 import matms.domain.entities.Participant;
 import matms.domain.exceptions.NoWinnerException;
 import matms.domain.exceptions.TournamentNotFoundException;
 import matms.domain.valueobjects.Match;
 
-public class RoundRobinMode implements TournamentMode {
+public class RoundRobinMode {
 
 	private Optional<MartialArtsTournament> tournament;
 	private Round currentRound;
@@ -33,7 +32,6 @@ public class RoundRobinMode implements TournamentMode {
 		initializePoints();
 	}
 
-	@Override
 	public BigInteger calculateNumberOfMatches() throws TournamentNotFoundException {
 		if (tournament.isPresent()) {
 			return MathUtils.binomialCoefficient(BigInteger.valueOf(tournament.get().getParticipants().size()),
@@ -43,7 +41,6 @@ public class RoundRobinMode implements TournamentMode {
 		}
 	}
 
-	@Override
 	public void playRound(Round round) {
 		for (Match match : round.getMatches()) {
 			// Loser hardcoded. normally User Input here.
@@ -66,7 +63,6 @@ public class RoundRobinMode implements TournamentMode {
 
 	}
 
-	@Override
 	public Round nextRound() throws TournamentNotFoundException {
 		Iterator<Map.Entry<String, Participant>> it = tournament.get().getParticipants().entrySet().iterator();
 		List<Match> matches = new ArrayList<>();
@@ -90,7 +86,6 @@ public class RoundRobinMode implements TournamentMode {
 		return this.currentRound;
 	}
 
-	@Override
 	public Participant getWinner() throws NoWinnerException {
 		int max = Collections.max(participantPoints.values());
 
@@ -102,18 +97,15 @@ public class RoundRobinMode implements TournamentMode {
 
 		throw new NoWinnerException("There is no winner yet!");
 	}
-
-	@Override
+	
 	public Round getCurrentRound() {
 		return currentRound;
 	}
 
-	@Override
 	public boolean checkIfThereIsWinner() {
 		return currentMatch != numberOfMatches.intValue();
 	}
 
-	@Override
 	public Map<Participant, Integer> getParticipantPoints() {
 		return participantPoints;
 	}
