@@ -1,20 +1,6 @@
 Users:
 --------------------------
-User{id='18377c7c-f7f2-407a-81fc-4120f364ed0f', username='Test', password='test1', lastName='Gottfried', firstName='James', permission='PARTICIPANT'}
-User{id='cfa191ab-3c54-44ad-a767-5b7857063b23', username='Test', password='test1', lastName='Gottfried', firstName='Justin', permission='TRAINER'}
 
 Tournaments:
 --------------------------
-MartialArtsTournament{id='12b7f76b-ab76-42aa-9f9b-5a04037ab2b3', name='FirstBoxTournament', venue='{country='Germany', street='Stuttgarter Stra�e', streetNumber='15', postalCode='66178'}', entryFee='10.0 EUR', ticketPrice='15.0 EUR', participants='942fa7dd-db9d-49c5-b759-30b010013433, aa985c2a-afaa-40bd-9b5d-12cb4bd648b9, 6892dc13-993c-4107-bfe4-0a3a4d2e3237, cc45151c-e75f-44ff-a371-3a079bb294f8, cc62a377-e95b-4418-b032-9b929939c6ce, c1c3937e-7325-4535-a0dc-111b978911ec, 6fe924c4-0cad-4dda-8177-ad6038a38ec8, 63d968b2-d19c-44b5-b261-77c8f84ab5f1, , martialArt='BOX'}
-Participant{id='6892dc13-993c-4107-bfe4-0a3a4d2e3237', firstName='Hans6', lastName='Wurst6', adress='{country='Germany', street='Wurststra�e', streetNumber='6', postalCode='76187'}', weight='80.0 Kg', martialArts='BOX, '}, Points: 2
-Participant{id='cc45151c-e75f-44ff-a371-3a079bb294f8', firstName='Hans1', lastName='Wurst1', adress='{country='Germany', street='Wurststra�e', streetNumber='1', postalCode='76187'}', weight='80.0 Kg', martialArts='BOX, '}, Points: 3
-Participant{id='942fa7dd-db9d-49c5-b759-30b010013433', firstName='Hans0', lastName='Wurst0', adress='{country='Germany', street='Wurststra�e', streetNumber='0', postalCode='76187'}', weight='80.0 Kg', martialArts='BOX, '}, Points: 1
-Participant{id='c1c3937e-7325-4535-a0dc-111b978911ec', firstName='Hans7', lastName='Wurst7', adress='{country='Germany', street='Wurststra�e', streetNumber='7', postalCode='76187'}', weight='80.0 Kg', martialArts='BOX, '}, Points: 2
-Participant{id='aa985c2a-afaa-40bd-9b5d-12cb4bd648b9', firstName='Hans2', lastName='Wurst2', adress='{country='Germany', street='Wurststra�e', streetNumber='2', postalCode='76187'}', weight='80.0 Kg', martialArts='BOX, '}, Points: 1
-Participant{id='6fe924c4-0cad-4dda-8177-ad6038a38ec8', firstName='Hans3', lastName='Wurst3', adress='{country='Germany', street='Wurststra�e', streetNumber='3', postalCode='76187'}', weight='80.0 Kg', martialArts='BOX, '}, Points: 2
-Participant{id='cc62a377-e95b-4418-b032-9b929939c6ce', firstName='Hans5', lastName='Wurst5', adress='{country='Germany', street='Wurststra�e', streetNumber='5', postalCode='76187'}', weight='80.0 Kg', martialArts='BOX, '}, Points: 0
-Participant{id='63d968b2-d19c-44b5-b261-77c8f84ab5f1', firstName='Hans4', lastName='Wurst4', adress='{country='Germany', street='Wurststra�e', streetNumber='4', postalCode='76187'}', weight='80.0 Kg', martialArts='BOX, '}, Points: 1
 
-Winner:
---------------------------
-Participant{id='cc45151c-e75f-44ff-a371-3a079bb294f8', firstName='Hans1', lastName='Wurst1', adress='{country='Germany', street='Wurststra�e', streetNumber='1', postalCode='76187'}', weight='80.0 Kg', martialArts='BOX, '}
