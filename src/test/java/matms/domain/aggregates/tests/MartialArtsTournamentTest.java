@@ -133,15 +133,9 @@ public class MartialArtsTournamentTest {
 												.participants(participants)
 												.martialArt(MartialArt.BOX)
 												.build();
-		String tournamentString = "MartialArtsTournament{" +
-				"id='" + id.getUuid().toString() + "'" +
-				", name='Tournament'" +
-				", venue='" + venue.toString() + "'" +
-				", entryFee='" + entryFee + "'" +
-				", ticketPrice='" + ticketPrice + "'" +
-				", participants='" + p1.getId().getUuid() + "," + p2.getId().getUuid() + ",'" + 
-				", martialArt='" + MartialArt.BOX.toString() + "'}";
-		assertTrue(tournament.toString().equals(tournamentString));
+		
+		assertTrue(tournament.toString().contains(p1.getId().getUuid()));
+		assertTrue(tournament.toString().contains(p2.getId().getUuid()));
 		
 	}
 	
