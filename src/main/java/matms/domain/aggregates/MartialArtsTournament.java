@@ -7,6 +7,7 @@ import matms.application.KnockoutMode;
 import matms.application.RoundRobinMode;
 import matms.application.SwissSystemMode;
 import matms.domain.MartialArt;
+import matms.domain.TournamentMode;
 import matms.domain.entities.Participant;
 import matms.domain.valueobjects.Adress;
 import matms.domain.valueobjects.Id;
@@ -23,9 +24,7 @@ public class MartialArtsTournament {
 	private Map<String, Participant> participants;
 	private MartialArt martialArt; 
 	
-	private KnockoutMode knockout;
-	private RoundRobinMode roundRobin;
-	private SwissSystemMode swissSystem;
+	private TournamentMode mode;
 	
 	private MartialArtsTournament(final Id id, final String name, final Adress venue, final Money entryFee, final Money ticketPrice, final int numberOfTicketsSold, Map<String, Participant> participants, final MartialArt martialArt) {
 		this.id = id;
@@ -135,16 +134,8 @@ public class MartialArtsTournament {
 		return martialArt;
 	}
 	
-	public void setTournamentMode(KnockoutMode knockout) {
-		this.knockout = knockout;
-	}
-	
-	public void setTournamentMode(RoundRobinMode roundRobin) {
-		this.roundRobin = roundRobin;
-	}
-	
-	public void setTournamentMode(SwissSystemMode swiss) {
-		this.swissSystem = swiss;
+	public void setTournamentMode(TournamentMode mode) {
+		this.mode = mode;
 	}
 	
 	@Override
