@@ -3,8 +3,21 @@ package matms.abstraction;
 import java.math.BigInteger;
 
 public class MathUtils {
+	
+	private static MathUtils mathUtils;
+	
+	private MathUtils() {
+		
+	}
+	
+	public static MathUtils getInstance() {
+		if (mathUtils == null) {
+			mathUtils = new MathUtils();
+		}
+		return mathUtils;
+	}
 
-	public static BigInteger factCalculator(BigInteger n) {
+	public BigInteger factCalculator(BigInteger n) {
 		if (n.intValue() < 0) throw new IllegalArgumentException();
 		if (n.intValue() == 0) return BigInteger.ONE;
 		BigInteger fact = BigInteger.ONE;
@@ -16,13 +29,13 @@ public class MathUtils {
 		return fact;
 	}
 	
-	public static BigInteger binomialCoefficient(BigInteger n, BigInteger k) {
+	public BigInteger binomialCoefficient(BigInteger n, BigInteger k) {
 		if (k.intValue() < 0 || n.intValue() < 0 || k.intValue() > n.intValue()) throw new IllegalArgumentException();
 		BigInteger x = factCalculator(k).multiply(factCalculator(n.subtract(k)));
 		return factCalculator(n).divide(x);
 	}
 	
-	public static double customLog(int base, int logNumber) {
+	public double customLog(int base, int logNumber) {
 		return Math.log(logNumber) / Math.log(base);
 	}
 	

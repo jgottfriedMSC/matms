@@ -36,7 +36,7 @@ public class RoundRobinMode implements TournamentMode {
 	@Override
 	public BigInteger calculateNumberOfMatches() throws TournamentNotFoundException {
 		if (tournament.isPresent()) {
-			return MathUtils.binomialCoefficient(BigInteger.valueOf(tournament.get().getParticipants().size()),
+			return MathUtils.getInstance().binomialCoefficient(BigInteger.valueOf(tournament.get().getParticipants().size()),
 					BigInteger.valueOf(2)); // Binomialkoeffizient;
 		} else {
 			throw new TournamentNotFoundException("Tournament not found!");

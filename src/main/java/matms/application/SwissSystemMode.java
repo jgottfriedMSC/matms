@@ -36,7 +36,7 @@ public class SwissSystemMode implements TournamentMode {
 	@Override
 	public BigInteger calculateNumberOfMatches() throws TournamentNotFoundException {
 		if (tournament.isPresent()) {
-			return BigInteger.valueOf((long) ((tournament.get().getParticipants().size() / 2) * MathUtils.customLog(2, tournament.get().getParticipants().size()))); // n/2 * log_2(n);
+			return BigInteger.valueOf((long) ((tournament.get().getParticipants().size() / 2) * MathUtils.getInstance().customLog(2, tournament.get().getParticipants().size()))); // n/2 * log_2(n);
 		} else {
 			throw new TournamentNotFoundException("Tournament not found!");
 		}
