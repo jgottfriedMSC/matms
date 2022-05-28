@@ -13,16 +13,13 @@ public class User {
 	private String firstName;
 	private Permission permission;
 	
-	private CreateUser createUser;
-	
-	private User(final Id id, final String username, final String password, final String lastName, final String firstName, final Permission permission, final CreateUser createUser) {
+	private User(final Id id, final String username, final String password, final String lastName, final String firstName, final Permission permission) {
 		this.id = id;
 		this.username = username;
 		this.password = password;
 		this.lastName = lastName;
 		this.firstName = firstName;
 		this.permission = permission;
-		this.createUser = createUser;
 	}
 	
 	public static UserBuilder builder() {
@@ -36,7 +33,6 @@ public class User {
 		private String lastName;
 		private String firstName;
 		private Permission permission;
-		private CreateUser createUser;
 		
 		UserBuilder() {
 			
@@ -72,13 +68,8 @@ public class User {
 			return this;
 		}
 		
-		public UserBuilder createUser(final CreateUser createUser) {
-			this.createUser = createUser;
-			return this;
-		}
-		
 		public User build() {
-			return new User(id, username, password, lastName, firstName, permission, createUser);
+			return new User(id, username, password, lastName, firstName, permission);
 		}
 	}
 	
@@ -104,10 +95,6 @@ public class User {
 	
 	public Permission getPermission() {
 		return permission;
-	}
-	
-	public CreateUser getCreateUser() {
-		return createUser;
 	}
 	
 	@Override
