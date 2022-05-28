@@ -1,6 +1,5 @@
 package matms.domain.entities;
 
-import matms.application.CreateUser;
 import matms.domain.Permission;
 import matms.domain.valueobjects.Id;
 
